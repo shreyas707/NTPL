@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Saudas</h1>
+<%= link_to 'New Sauda', new_sauda_path, class: "ui primary button" %><br/><br/>
+
+<table class="ui celled padded table dataTable">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Date</th>
+      <th>Customer</th>
+      <th>Is order taken</th>
+      <th>Is delivered</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @saudas.each do |sauda| %>
+      <tr>
+        <td><%= sauda.number %></td>
+        <td><%= sauda.date %></td>
+        <td><%= sauda.customer.name %></td>
+        <td><%= if sauda.is_order_taken == false  then link_to "Take Order", new_sauda_order_path(sauda) else "Yes" end %></td>
+        <td><%= if sauda.is_delivered == false  then "Delivery Details" else "Delivered" end %></td>
+        <td><%= link_to 'Show', sauda %></td>
+        <td><%= link_to 'Edit', edit_sauda_path(sauda) %></td>
+        <td><%= link_to 'Destroy', sauda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

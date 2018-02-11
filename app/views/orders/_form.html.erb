@@ -1,0 +1,63 @@
+<%= nested_form_for [@sauda, @order] do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label>Customer: </label><%= @sauda.customer.name %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :sauda_id, value: @sauda.id %>
+    <label>Sauda: </label><%= @sauda.number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total %><br>
+    <div class="ui input"><%= f.text_field :total %></div><br/><br/>
+  </div>
+
+  <!-- <div class="field">
+    <%#= f.label :number %><br>
+    <%#= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%#= f.label :date %><br>
+    <%#= f.date_select :date %>
+  </div> -->
+
+  <%#= binding.pry %>
+  <% @sauda.sauda_line_items.each do |item|%>
+
+    <label>Item Name: </label><%= item.category.name%><br/>
+    <label>Item Rate: </label><%= item.rate%><br/>
+    <label>Item Quantity: </label><%= item.quantity%><br/><br/>
+
+    <%= f.fields_for :order_products, @order_product do |order_product| %>
+    <%# item.category.products.each do |product| %>
+      <label>Size: </label>
+      <%= order_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui fluid search dropdown"} %><br/>
+      <label>Quantity: </label>
+      <div class="ui input"><%= order_product.number_field :order_quantity %></div><br/><br/>
+      <label>Price: </label>
+      <div class="ui input"><%= order_product.number_field :price %></div><br/><br/>
+      <%= order_product.link_to_remove "Remove OrderProduct" %><br/><br/>
+    <%# end %>
+    <%= f.link_to_add "Add OrderProduct", :order_products %><br/><br/>
+    <% end %>
+  <% end %>
+    <br/>
+
+  <div class="actions">
+    <%= f.submit class: "ui primary button" %>
+  </div><br/>
+  
+<% end %>

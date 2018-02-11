@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category), class: "ui button" %>
+<%= link_to 'Back', categories_path, class: "ui black button" %><br/><br/>
+<%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>

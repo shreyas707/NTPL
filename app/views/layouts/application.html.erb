@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <div class="ui container">
+    <head>
+      <title>NtplNew</title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+
+      <!-- semantic ui -->
+      <link rel="stylesheet" type="text/css" href="https://semantic-ui.com/dist/semantic.min.css">
+      <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
+      <!-- SEMANTIC DATA TABLES       -->
+      <!-- <script src="http://code.jquery.com/jquery-1.12.4.js"></script> -->
+      <script src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+      <script src="http://cdn.datatables.net/1.10.15/js/dataTables.semanticui.min.js"></script>
+      <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script> -->
+      <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet"> -->
+      <link href="https://cdn.datatables.net/1.10.15/css/dataTables.semanticui.min.css">
+
+      <script>
+        $(document).ready(function(){
+          $('.dataTable').DataTable();
+          $('.ui.dropdown').dropdown();
+          $('.ui.popup').popup();
+          $('.tabular.menu .item').tab();
+          $('#context1 .menu .item').tab({context: $('#context1')});
+          $('.ui.accordion').accordion();
+          $('.small.modal').modal();
+          $('.ui.modal').modal();
+        });
+      </script>
+      <div class="ui secondary pointing menu">
+        <%= link_to "Categories", categories_path, class: controller.controller_name == "categories" ? "active item" : "item" %>
+        <%= link_to "Customers", customers_path, class: controller.controller_name == "customers" ? "active item" : "item" %>
+        <%= link_to "Products", products_path, class: controller.controller_name == "products" ? "active item" : "item" %>
+        <%= link_to "Saudas", saudas_path, class: controller.controller_name == "saudas" ? "active item" : "item" %>
+      </div>
+    </head>
+    <body>
+
+      <%= yield %>
+
+    </body>
+  </div>
+</html>

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @sauda.number %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @sauda.date.strftime("%d %B %Y") %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @sauda.customer.name %>
+</p>
+
+<p>
+  <strong>Is order taken:</strong>
+  <%= @sauda.is_order_taken %>
+</p>
+
+<p>
+  <strong>Is delivered:</strong>
+  <%= @sauda.is_delivered %>
+</p>
+
+<H2> Sauda Details</H2>
+
+<table class="ui celled padded table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <!-- <th>Actions</th> -->
+      </tr>
+    
+    </thead>
+    <tbody>
+  <% @sauda.sauda_line_items.each_with_index do |sauda_line_item,index| %>
+      <tr>
+        <td> <%= index + 1 %> </td>
+        <td> <%= sauda_line_item.category.name %> </td>
+        <td> <%= sauda_line_item.rate %> </td>
+        <td> <%= sauda_line_item.quantity %></td>
+        <td></td>
+        <!-- <td></td> -->
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+<br/>
+<%= link_to 'Edit', edit_sauda_path(@sauda), class: "ui button" %>
+<%= link_to 'Back', saudas_path, class: "ui black button" %><br/><br/>
+<%= link_to 'Destroy', @sauda, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>
+

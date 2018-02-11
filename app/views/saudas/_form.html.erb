@@ -1,0 +1,67 @@
+<%= nested_form_for(@sauda) do |f| %>
+  <% if @sauda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sauda.errors.count, "error") %> prohibited this sauda from being saved:</h2>
+
+      <ul>
+      <% @sauda.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!--   <div class="field">
+    <%#= f.label :number %><br>
+    <%#= f.text_field :number %>
+  </div>
+  <div class="field">
+    <%#= f.label :date %><br>
+    <%#= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%#= f.label :is_order_taken %><br>
+    <%#= f.check_box :is_order_taken %>
+  </div>
+  <div class="field">
+    <%#= f.label :is_delivered %><br>
+    <%#= f.check_box :is_delivered %>
+  </div> -->
+
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.collection_select :customer_id, Customer.all, :id, :name, {prompt: "Select Customer"}, {class: "ui fluid search dropdown"} %><br/><br/>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :sauda_line_items, @sauda_line_item do |sauda_line_item|%>
+    
+      <%= sauda_line_item.label :category_id %><br/>
+      <%= sauda_line_item.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "ui fluid search dropdown"} %><br/><br/>
+    
+      <%= sauda_line_item.label :quantity %> <br/>
+      <div class="ui input"><%= sauda_line_item.number_field :quantity %></div><br/><br/>
+    
+      <%= sauda_line_item.label :Rate %> <br/>
+      <div class="ui input"><%= sauda_line_item.number_field :rate %></div><br/><br/>
+      
+      <%= sauda_line_item.link_to_remove "Remove SaudaLineItem" %><br/><br/>
+
+    <% end %>
+
+    <%= f.link_to_add "Add SaudaLineItem", :sauda_line_items %>
+
+  </div><br/>
+
+  <div class="field">
+    <label>Is Order Taken? </label><%= f.check_box :is_order_taken %><br/><br/>
+  </div>
+  <div class="field">
+    <label>Is Delivered? </label><%= f.check_box :is_delivered %><br/><br/>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: "ui primary button" %>
+  </div><br/>
+  
+<% end %>

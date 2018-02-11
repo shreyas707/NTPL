@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  date: 2018-02-11
+  customer_id: 1
+  is_order_taken: false
+  is_delivered: false
+
+two:
+  number: MyString
+  date: 2018-02-11
+  customer_id: 1
+  is_order_taken: false
+  is_delivered: false

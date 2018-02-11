@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @customer.number %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @customer.location %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer), class: "ui button" %>
+<%= link_to 'Back', customers_path, class: "ui black button" %><br/><br/>
+<%= link_to 'Destroy', @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>

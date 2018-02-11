@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @product.size %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product), class: "ui button" %>
+<%= link_to 'Back', products_path, class: "ui black button" %><br/><br/>
+<%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>
