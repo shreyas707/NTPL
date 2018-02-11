@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :deliver_products
+  resources :deliveries
   root 'saudas#index'
 
   resources :saudas do
