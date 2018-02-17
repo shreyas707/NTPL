@@ -6,8 +6,8 @@
 <table class="ui celled padded table dataTable">
   <thead>
     <tr>
-      <th>Size</th>
       <th>Category</th>
+      <th>Size</th>
       <th>Show</th>
       <th>Edit</th>
       <th>Destroy</th>
@@ -17,8 +17,8 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
+        <td><%= product.category.name %></td>
         <td><%= product.size %></td>
-        <td><%= product.category_id %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
