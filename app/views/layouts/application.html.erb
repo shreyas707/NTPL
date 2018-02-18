@@ -30,14 +30,28 @@
           $('.ui.modal').modal();
         });
       </script>
-      <div class="ui secondary pointing menu">
-        <%= link_to "Categories", categories_path, class: controller.controller_name == "categories" ? "active item" : "item" %>
-        <%= link_to "Customers", customers_path, class: controller.controller_name == "customers" ? "active item" : "item" %>
-        <%= link_to "Products", products_path, class: controller.controller_name == "products" ? "active item" : "item" %>
-        <%= link_to "Saudas", saudas_path, class: controller.controller_name == "saudas" ? "active item" : "item" %>
-      </div>
+
+        <div class="ui secondary pointing menu">
+          <% if user_signed_in? %>
+            <%= link_to "Categories", categories_path, class: controller.controller_name == "categories" ? "active item" : "item" %>
+            <%= link_to "Customers", customers_path, class: controller.controller_name == "customers" ? "active item" : "item" %>
+            <%= link_to "Products", products_path, class: controller.controller_name == "products" ? "active item" : "item" %>
+            <%= link_to "Saudas", saudas_path, class: controller.controller_name == "saudas" ? "active item" : "item" %>
+          
+            <div class="right menu">
+              <%#= link_to("Edit Account", edit_user_registration_path, class: controller.controller_name == "registrations" ? "active ui item" : "ui item") %>
+              <%= link_to("Logout", destroy_user_session_path, method: :delete, class: "ui item") %>
+            </div>
+          <% else %>
+            <div class="right menu">
+              <%= link_to("Login", new_user_session_path, class: controller.controller_name == "sessions" ? "active ui item" : "ui item") %>
+            </div>
+          <% end %>
+        </div>
     </head>
     <body>
+
+      <p class="alert"><%= alert %></p>
 
       <%= yield %>
 

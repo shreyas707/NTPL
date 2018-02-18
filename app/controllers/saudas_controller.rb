@@ -1,5 +1,6 @@
 class SaudasController < ApplicationController
   before_action :set_sauda, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /saudas
   # GET /saudas.json
