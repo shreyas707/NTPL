@@ -6,7 +6,8 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :order_products, allow_destroy: true
 
 	before_save :generate_initial_order_details
-
+	after_save :update_sauda_order_status
+	
 	def generate_initial_order_details
 		
 		if Order.exists?
@@ -18,5 +19,10 @@ class Order < ActiveRecord::Base
 
 		self.date = Date.today
 	end
+
+	def update_sauda_order_status
+        self.sauda.is_order_taken = true
+        self.sauda.save
+    end
 
 end
