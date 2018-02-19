@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Customers</h1>
-<%= link_to 'New Customer', new_customer_path, class: "ui primary button" %><br/><br/>
+<% if current_user.is_admin? %>
+  <%= link_to 'New Customer', new_customer_path, class: "ui primary button" %><br/><br/>
+<% end %>
 
 <table class="ui celled padded table dataTable">
   <thead>
@@ -10,8 +12,10 @@
       <th>Number</th>
       <th>Location</th>
       <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <% if current_user.is_admin? %>
+        <th>Edit</th>
+        <th>Destroy</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -22,8 +26,10 @@
         <td><%= customer.number %></td>
         <td><%= customer.location %></td>
         <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

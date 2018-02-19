@@ -1,7 +1,8 @@
 class DeliverProductsController < ApplicationController
   before_action :set_deliver_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  load_and_authorize_resource
+  
   # GET /deliver_products
   # GET /deliver_products.json
   def index

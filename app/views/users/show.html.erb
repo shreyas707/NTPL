@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<strong>Email:</strong>
+	<%= @user.email %>
+</p>
+
+<% if current_user.is_admin? %>
+	<%= link_to 'Edit', edit_user_path(@user), class: "ui button" %>
+	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %><br/><br/>
+<% end %>
+<%= link_to 'Back', users_path, class: "ui black button" %><br/><br/>

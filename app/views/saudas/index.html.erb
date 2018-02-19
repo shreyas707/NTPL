@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Saudas</h1>
-<%= link_to 'New Sauda', new_sauda_path, class: "ui primary button" %><br/><br/>
+<% if current_user.is_admin? %>
+  <%= link_to 'New Sauda', new_sauda_path, class: "ui primary button" %><br/><br/>
+<% end %>
 
 <table class="ui celled padded table dataTable">
   <thead>
@@ -12,8 +14,10 @@
       <th>Is order taken</th>
       <th>Is delivered</th>
       <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <% if current_user.is_admin? %>
+        <th>Edit</th>
+        <th>Destroy</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -26,8 +30,10 @@
         <td><%= if sauda.is_order_taken == false then link_to "Take Order", new_sauda_order_path(sauda) else "Yes" end %></td>
         <td><%= if sauda.is_delivered == false then "Delivery Details" else "Delivered" end %></td>
         <td><%= link_to 'Show', sauda %></td>
-        <td><%= link_to 'Edit', edit_sauda_path(sauda) %></td>
-        <td><%= link_to 'Destroy', sauda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to 'Edit', edit_sauda_path(sauda) %></td>
+          <td><%= link_to 'Destroy', sauda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

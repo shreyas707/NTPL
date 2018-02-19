@@ -37,7 +37,11 @@
             <%= link_to "Customers", customers_path, class: controller.controller_name == "customers" ? "active item" : "item" %>
             <%= link_to "Products", products_path, class: controller.controller_name == "products" ? "active item" : "item" %>
             <%= link_to "Saudas", saudas_path, class: controller.controller_name == "saudas" ? "active item" : "item" %>
-          
+            <% if current_user.is_admin? %>
+              <%= link_to "Users", users_path, class: controller.controller_name == "users" ? "active item" : "item" %>
+              <%= link_to "Roles", roles_path, class: controller.controller_name == "roles" ? "active item" : "item" %>
+            <% end %>
+
             <div class="right menu">
               <%#= link_to("Edit Account", edit_user_registration_path, class: controller.controller_name == "registrations" ? "active ui item" : "ui item") %>
               <%= link_to("Logout", destroy_user_session_path, method: :delete, class: "ui item") %>

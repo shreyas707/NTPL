@@ -7,9 +7,11 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.category_id %>
+  <%= @product.category.name %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product), class: "ui button" %>
+<% if current_user.is_admin? %>
+	<%= link_to 'Edit', edit_product_path(@product), class: "ui button" %>
+	<%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %><br/><br/>
+<% end %>
 <%= link_to 'Back', products_path, class: "ui black button" %><br/><br/>
-<%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>

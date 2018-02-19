@@ -1,0 +1,32 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <h4>These errors prohitibted the form from being saved: </h4>
+    <ul style = "color:red;">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class = "field">
+
+    <label>Email</label><br/>
+    <div class="ui input"><%= f.text_field :email %></div>
+    <br/><br/>
+
+    <label>Password</label><br/>
+    <div class="ui input"><%= f.password_field :password %></div>
+    <br/><br/>
+
+    <label>Re-enter Password</label><br/>
+    <div class="ui input"><%= f.password_field :password_confirmation %></div>
+    <br/><br/>
+
+    <label>Role</label><br/>
+    <%= f.collection_select :role_id, Role.all, :id, :name, {prompt: "Select Role"}, {class: "ui fluid search dropdown"} %>
+    <br/><br/>
+
+  </div>
+
+  <%= f.submit 'Submit', class: "ui primary button" %><br/><br/>
+<% end %>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+<% if current_user.is_admin? %>
+  <%= link_to 'New User', new_user_path, class: "ui primary button" %><br/><br/>
+<% end %>
+<table class="ui celled padded table dataTable">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Show</th>
+      <% if current_user.is_admin? %>
+        <th>Edit</th>
+        <th>Destroy</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Show', user %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/><br/>

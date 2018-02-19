@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Categories</h1>
-<%= link_to 'New Category', new_category_path, class: "ui primary button" %><br/><br/>
+<% if current_user.is_admin? %>
+  <%= link_to 'New Category', new_category_path, class: "ui primary button" %><br/><br/>
+<% end %>
 
 <table class="ui celled padded table dataTable">
   <thead>
     <tr>
       <th>Name</th>
       <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <% if current_user.is_admin? %>
+        <th>Edit</th>
+        <th>Destroy</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -18,8 +22,10 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to 'Edit', edit_category_path(category) %></td>
+          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

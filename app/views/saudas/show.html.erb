@@ -53,7 +53,10 @@
   <% end %>
 </table>
 <br/>
-<%= link_to 'Edit', edit_sauda_path(@sauda), class: "ui button" %>
+
+<% if current_user.is_admin? %>
+  <%= link_to 'Edit', edit_sauda_path(@sauda), class: "ui button" %>
+  <%= link_to 'Destroy', @sauda, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %><br/><br/>
+<% end %>
 <%= link_to 'Back', saudas_path, class: "ui black button" %><br/><br/>
-<%= link_to 'Destroy', @sauda, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %>
 
