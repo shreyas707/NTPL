@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :name, :encrypted_password, :number, :role_id
+
   belongs_to :role
 
   def is_admin?

@@ -1,7 +1,13 @@
 class Sauda < ActiveRecord::Base
 
+	validates_presence_of :number, :date, :customer_id, :is_order_taken, :is_delivered
+	validates_uniqueness_of :number
+
 	belongs_to :customer
+	
 	has_one :order
+	has_one :delivery
+
 	has_many :sauda_line_items
 	accepts_nested_attributes_for :sauda_line_items, allow_destroy: true
 

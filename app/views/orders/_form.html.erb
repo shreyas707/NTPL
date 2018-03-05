@@ -34,27 +34,26 @@
     <%#= f.date_select :date %>
   </div> -->
 
-  <%#= binding.pry %>
   <% @sauda.sauda_line_items.each do |item|%>
 
     <label>Item Name: </label><%= item.category.name%><br/>
     <label>Item Rate: </label><%= item.rate%><br/>
-    <label>Item Quantity: </label><%= item.quantity%><br/><br/>
+    <label>Item Quantity: </label><%= item.quantity%><br/>
+    <label>Sub Total: </label><%= sub_total = item.rate * item.quantity %><br/><br/>
 
     <%= f.fields_for :order_products, @order_product do |order_product| %>
-    <%# item.category.products.each do |product| %>
+  
+      <%= order_product.hidden_field :price, value: sub_total  %>
       <label>Size: </label>
-      <%= order_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui fluid search dropdown"} %><br/>
+      <%= order_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui search dropdown"} %><br/><br/>
       <label>Quantity: </label>
-      <div class="ui input"><%= order_product.number_field :order_quantity %></div><br/><br/>
-      <label>Price: </label>
-      <div class="ui input"><%= order_product.number_field :price %></div><br/><br/>
+      <div class="ui input"><%= order_product.text_field :order_quantity %></div><br/><br/>
       <%= order_product.link_to_remove "Remove OrderProduct" %><br/><br/>
-    <%# end %>
-    <%= f.link_to_add "Add OrderProduct", :order_products %><br/><br/>
+    
     <% end %>
+    <%= f.link_to_add "Add OrderProduct", :order_products %><br/><br/>
   <% end %>
-    <br/>
+  <br/>
 
   <div class="actions">
     <%= f.submit class: "ui primary button" %>

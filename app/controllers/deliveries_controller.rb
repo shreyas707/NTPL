@@ -2,7 +2,7 @@ class DeliveriesController < ApplicationController
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
-
+  
   # GET /deliveries
   # GET /deliveries.json
   def index
@@ -17,6 +17,8 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/new
   def new
     @delivery = Delivery.new
+    @sauda = Sauda.find(params[:sauda_id])
+    @delivery_product = DeliveryProduct.new
   end
 
   # GET /deliveries/1/edit
@@ -27,10 +29,12 @@ class DeliveriesController < ApplicationController
   # POST /deliveries.json
   def create
     @delivery = Delivery.new(delivery_params)
-
+    @sauda = Sauda.find(params[:sauda_id])
     respond_to do |format|
       if @delivery.save
-        format.html { redirect_to @delivery, notice: 'Delivery was successfully created.' }
+        @sauda.is_delivered = true
+        @sauda.save
+        format.html { redirect_to @sauda, notice: 'Delivery was successfully created.' }
         format.json { render :show, status: :created, location: @delivery }
       else
         format.html { render :new }
@@ -71,6 +75,6 @@ class DeliveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_params
-      params.require(:delivery).permit(:number, :delivery_date, :deliverytotal, :sauda_id)
+      params.require(:delivery).permit(:number, :date, :total, :sauda_id, delivery_products_attributes: [:id, :delivery_id, :product_id, :delivery_quantity, :price, :_destroy])
     end
 end

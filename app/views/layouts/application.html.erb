@@ -37,6 +37,7 @@
             <%= link_to "Customers", customers_path, class: controller.controller_name == "customers" ? "active item" : "item" %>
             <%= link_to "Products", products_path, class: controller.controller_name == "products" ? "active item" : "item" %>
             <%= link_to "Saudas", saudas_path, class: controller.controller_name == "saudas" ? "active item" : "item" %>
+            <%#= link_to "Deliveries", deliveries_path, class: controller.controller_name == "deliveries" ? "active item" : "item" %>
             <% if current_user.is_admin? %>
               <%= link_to "Users", users_path, class: controller.controller_name == "users" ? "active item" : "item" %>
               <%= link_to "Roles", roles_path, class: controller.controller_name == "roles" ? "active item" : "item" %>

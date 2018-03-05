@@ -30,14 +30,14 @@
 
   <div class="field">
     <%= f.label :customer_id %><br>
-    <%= f.collection_select :customer_id, Customer.all, :id, :name, {prompt: "Select Customer"}, {class: "ui fluid search dropdown"} %><br/><br/>
+    <%= f.collection_select :customer_id, Customer.all, :id, :name, {prompt: "Select Customer"}, {class: "ui search dropdown"} %><br/><br/>
   </div>
 
   <div class="field">
     <%= f.fields_for :sauda_line_items, @sauda_line_item do |sauda_line_item|%>
     
       <%= sauda_line_item.label :category_id %><br/>
-      <%= sauda_line_item.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "ui fluid search dropdown"} %><br/><br/>
+      <%= sauda_line_item.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "ui search dropdown"} %><br/><br/>
     
       <%= sauda_line_item.label :quantity %> <br/>
       <div class="ui input"><%= sauda_line_item.number_field :quantity %></div><br/><br/>

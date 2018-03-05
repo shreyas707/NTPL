@@ -28,7 +28,17 @@
         <td><%= sauda.date %></td>
         <td><%= sauda.customer.name %></td>
         <td><%= if sauda.is_order_taken == false then link_to "Take Order", new_sauda_order_path(sauda) else "Yes" end %></td>
-        <td><%= if sauda.is_delivered == false then "Delivery Details" else "Delivered" end %></td>
+        <td><%= 
+          if sauda.is_delivered == false 
+            if sauda.is_order_taken == true 
+              link_to "Take Delivery", new_sauda_delivery_path(sauda) 
+            else
+              "Take Order First"
+            end
+          else
+            "Delivered" 
+          end 
+        %></td>
         <td><%= link_to 'Show', sauda %></td>
         <% if current_user.is_admin? %>
           <td><%= link_to 'Edit', edit_sauda_path(sauda) %></td>

@@ -3,16 +3,17 @@ Rails.application.routes.draw do
   resources :roles
   devise_for :users
   resources :users
-  resources :deliver_products
-  resources :deliveries
-  root 'saudas#index'
 
   resources :saudas do
     resources :orders
+    resources :deliveries
   end
+
   resources :products
   resources :customers
   resources :categories
+
+  root 'saudas#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

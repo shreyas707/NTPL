@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "ui fluid search dropdown"} %><br/>
+    <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "ui search dropdown"} %><br/><br/>
   </div>
   <div class="actions">
     <%= f.submit class: "ui primary button" %><br/><br/>

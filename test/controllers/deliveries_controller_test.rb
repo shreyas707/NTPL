@@ -18,7 +18,7 @@ class DeliveriesControllerTest < ActionController::TestCase
 
   test "should create delivery" do
     assert_difference('Delivery.count') do
-      post :create, delivery: { delivery_date: @delivery.delivery_date, deliverytotal: @delivery.deliverytotal, number: @delivery.number, sauda_id: @delivery.sauda_id }
+      post :create, delivery: { date: @delivery.date, number: @delivery.number, sauda_id: @delivery.sauda_id, total: @delivery.total }
     end
 
     assert_redirected_to delivery_path(assigns(:delivery))
@@ -35,7 +35,7 @@ class DeliveriesControllerTest < ActionController::TestCase
   end
 
   test "should update delivery" do
-    patch :update, id: @delivery, delivery: { delivery_date: @delivery.delivery_date, deliverytotal: @delivery.deliverytotal, number: @delivery.number, sauda_id: @delivery.sauda_id }
+    patch :update, id: @delivery, delivery: { date: @delivery.date, number: @delivery.number, sauda_id: @delivery.sauda_id, total: @delivery.total }
     assert_redirected_to delivery_path(assigns(:delivery))
   end
 
