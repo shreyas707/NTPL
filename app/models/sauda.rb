@@ -1,6 +1,6 @@
 class Sauda < ActiveRecord::Base
 
-	validates_presence_of :number, :date, :customer_id, :is_order_taken, :is_delivered
+	validates_presence_of :number, :date, :customer_id
 	validates_uniqueness_of :number
 
 	belongs_to :customer

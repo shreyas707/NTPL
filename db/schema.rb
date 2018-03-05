@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304190930) do
+ActiveRecord::Schema.define(version: 20180305133407) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 20180304190930) do
     t.string   "number"
     t.date     "date"
     t.integer  "customer_id"
-    t.boolean  "is_order_taken"
-    t.boolean  "is_delivered"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "is_order_taken", default: false
+    t.boolean  "is_delivered",   default: false
   end
 
   create_table "users", force: :cascade do |t|
