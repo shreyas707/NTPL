@@ -58,5 +58,89 @@
   <%= link_to 'Edit', edit_sauda_path(@sauda), class: "ui button" %>
   <%= link_to 'Destroy', @sauda, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red button" %><br/><br/>
 <% end %>
-<%= link_to 'Back', saudas_path, class: "ui black button" %><br/><br/>
 
+<h2>Order Details</h2>
+
+<% if @order.present? %>
+
+  <table class="ui celled padded table">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Date</th>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      
+      </thead>
+      <tbody>
+    <% @order_products.each_with_index do |order_product, index| %>
+        <tr>
+          <td> <%= order_product.order.number %> </td>
+          <td> <%= order_product.order.date %> </td>
+          <td> <%= order_product.product.category.name %> </td>
+          <td> <%= order_product.product.size %></td>
+          <td> <%= order_product.order_quantity %> </td>
+          <td> <%= order_product.price %> </td>
+          <!-- <td></td> -->
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+
+<% else %>
+
+  <h4>No orders have been made yet.</h4>
+  <%= link_to "Take Order", new_sauda_order_path(@sauda), class: "ui primary button" %>
+
+<% end %>
+<br/>
+
+<h2>Delivery Details</h2>
+
+<% if @delivery.present? %>
+
+  <table class="ui celled padded table">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Date</th>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      
+      </thead>
+      <tbody>
+    <% @delivery_products.each_with_index do |delivery_product, index| %>
+        <tr>
+          <td> <%= delivery_product.delivery.number %> </td>
+          <td> <%= delivery_product.delivery.date %> </td>
+          <td> <%= delivery_product.product.category.name %> </td>
+          <td> <%= delivery_product.product.size %></td>
+          <td> <%= delivery_product.delivery_quantity %> </td>
+          <td> <%= delivery_product.price %> </td>
+          <!-- <td></td> -->
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+
+<% elsif @order.present? && !@delivery.present? %>
+
+  <h4>No deliveries have been made yet.</h4>
+  <%= link_to "Take Delivery", new_sauda_delivery_path(@sauda), class: "ui primary button" %>
+
+<% else %>
+
+  <h4>Take an order before delivery.</h4>
+
+<% end %>
+<br/><br/><br/>
+
+<%= link_to 'Back', saudas_path, class: "ui black button" %><br/><br/>

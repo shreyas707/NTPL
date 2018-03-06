@@ -12,6 +12,14 @@ class SaudasController < ApplicationController
   # GET /saudas/1
   # GET /saudas/1.json
   def show
+    @order = Order.find_by(sauda_id: @sauda.id)
+    if @order.present?
+      @order_products = OrderProduct.where(order_id: @order.id)
+    end
+    @delivery = Delivery.find_by(sauda_id: @sauda.id)
+    if @delivery.present?
+      @delivery_products = DeliveryProduct.where(delivery_id: @delivery.id)
+    end
   end
 
   # GET /saudas/new
@@ -28,7 +36,6 @@ class SaudasController < ApplicationController
   # POST /saudas.json
   def create
     @sauda = Sauda.new(sauda_params)
-
     respond_to do |format|
       if @sauda.save
         format.html { redirect_to @sauda, notice: 'Sauda was successfully created.' }
