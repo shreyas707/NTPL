@@ -43,13 +43,13 @@
 
     <%= f.fields_for :delivery_products, @delivery_product do |delivery_product| %>
   
-      <%#= delivery_product.hidden_field :price, value: sub_total  %>
+      <%= delivery_product.hidden_field :price, value: sub_total  %>
       <label>Size: </label>
       <%= delivery_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui search dropdown"} %><br/><br/>
       <label>Quantity: </label>
       <div class="ui input"><%= delivery_product.text_field :delivery_quantity %></div><br/><br/>
-      <label>Total: </label>
-      <div class="ui input"><%= delivery_product.text_field :price %></div><br/><br/> 
+      <!-- <label>Total: </label> -->
+      <!-- <div class="ui input"><%#= delivery_product.text_field :price %></div><br/><br/>  -->
       <%= delivery_product.link_to_remove "Remove deliveryProduct" %><br/><br/>
 
     <% end %>

@@ -34,17 +34,17 @@
     <%#= f.date_select :date %>
   </div> -->
 
-  <% @sauda.sauda_line_items.each do |item|%>
+  <% @sauda.sauda_line_items.each do |sauda_line_item|%>
 
-    <label>Item Name: </label><%= item.category.name%><br/>
-    <label>Item Rate: </label><%= item.rate%><br/>
-    <label>Item Quantity: </label><%= item.quantity%><br/>
-    <label>Sub Total: </label><%= sub_total = item.rate * item.quantity %><br/><br/>
+    <label>Item Name: </label><%= sauda_line_item.category.name%><br/>
+    <label>Item Rate: </label><%= sauda_line_item.rate%><br/>
+    <label>Item Quantity: </label><%= sauda_line_item.quantity%><br/>
+    <label>Sub Total: </label><%= sub_total = sauda_line_item.rate * sauda_line_item.quantity %><br/><br/>
 
     <%= f.fields_for :order_products, @order_product do |order_product| %>
       <%= order_product.hidden_field :price, value: sub_total  %>
       <label>Size: </label>
-      <%= order_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui search dropdown"} %><br/><br/>
+      <%= order_product.collection_select  :product_id, sauda_line_item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui search dropdown"} %><br/><br/>
       <label>Quantity: </label>
       <div class="ui input"><%= order_product.text_field :order_quantity %></div><br/><br/>
       <%= order_product.link_to_remove "Remove OrderProduct" %><br/><br/>
