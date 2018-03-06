@@ -53,12 +53,14 @@
 
   </div><br/>
 
-  <div class="field">
-    <label>Is Order Taken? </label><%= f.check_box :is_order_taken %><br/><br/>
-  </div>
-  <div class="field">
-    <label>Is Delivered? </label><%= f.check_box :is_delivered %><br/><br/>
-  </div>
+<!--   <%# if controller.action_name == "edit" %>
+    <div class="field">
+      <label>Is Order Taken? </label><%#= f.check_box :is_order_taken %><br/><br/>
+    </div>
+    <div class="field">
+      <label>Is Delivered? </label><%#= f.check_box :is_delivered %><br/><br/>
+    </div>
+  <%# end %> -->
 
   <div class="actions">
     <%= f.submit class: "ui primary button" %>

@@ -96,7 +96,7 @@ quantities = [10, 20, 30, 40, 50]
 	i += 1
 end
 
-saudas = Sauda.all.limit(15)
+saudas = Sauda.all.limit(20)
 saudas.each do |sauda|
 	o = Order.create(sauda_id: sauda.id)
 	sauda.sauda_line_items.each_with_index do |sli, index|
@@ -106,6 +106,7 @@ saudas.each do |sauda|
 	sauda.save
 end
 
+saudas = Sauda.all.limit(10)
 saudas.each do |sauda|
 	d = Delivery.create(sauda_id: sauda.id)
 	sauda.sauda_line_items.each_with_index do |sli, index|
