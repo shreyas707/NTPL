@@ -96,7 +96,24 @@ quantities = [10, 20, 30, 40, 50]
 	i += 1
 end
 
+saudas = Sauda.all.limit(15)
+saudas.each do |sauda|
+	o = Order.create(sauda_id: sauda.id)
+	sauda.sauda_line_items.each_with_index do |sli, index|
+		OrderProduct.create(order_id: o.id, product_id: sli.category.products[index].id, order_quantity: sli.quantity, price: (sli.quantity * sli.rate))
+	end
+	sauda.is_order_taken = true
+	sauda.save
+end
 
+saudas.each do |sauda|
+	d = Delivery.create(sauda_id: sauda.id)
+	sauda.sauda_line_items.each_with_index do |sli, index|
+		DeliveryProduct.create(delivery_id: d.id, product_id: sli.category.products[index].id, delivery_quantity: sli.quantity, price: (sli.quantity * sli.rate))
+	end
+	sauda.is_delivered = true
+	sauda.save!
+end
 
 
 
