@@ -42,7 +42,6 @@
     <label>Sub Total: </label><%= sub_total = item.rate * item.quantity %><br/><br/>
 
     <%= f.fields_for :order_products, @order_product do |order_product| %>
-  
       <%= order_product.hidden_field :price, value: sub_total  %>
       <label>Size: </label>
       <%= order_product.collection_select  :product_id, item.category.products, :id, :size, {prompt: "Select Size"}, {class: "ui search dropdown"} %><br/><br/>
