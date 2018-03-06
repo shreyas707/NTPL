@@ -140,6 +140,8 @@ saudas.each do |sauda|
 	payment.amount = sauda.sauda_line_items.pluck(:rate).sum * sauda.sauda_line_items.pluck(:quantity).sum
 	payment.sauda_id = sauda.id
 	payment.save
+	sauda.is_payment_done = true
+	sauda.save
 end
 
 
