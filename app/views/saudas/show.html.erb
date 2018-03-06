@@ -25,6 +25,22 @@
   <%= @sauda.is_delivered %>
 </p>
 
+<p>
+  <strong>Is payment done:</strong>
+  <%= @sauda.is_payment_done %>
+</p>
+
+<p>
+  <% if @sauda.is_payment_done == true %>
+    <strong>Payment made: </strong>
+    <%= @sauda.payments.pluck(:amount).inject(:+) %>
+  <% end %>
+</p>
+
+<% if @sauda.is_payment_done == false %>
+  <%= link_to 'Add Payment', new_sauda_payment_path(@sauda), class: "ui primary  button" %>
+<% end %>
+
 <H2> Sauda Details</H2>
 
 <table class="ui celled padded table">

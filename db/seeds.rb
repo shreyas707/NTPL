@@ -119,7 +119,7 @@ saudas.each do |sauda|
 	sauda.save
 end
 
-saudas = Sauda.all.limit(10)
+saudas = Sauda.all.limit(13)
 saudas.each do |sauda|
 	d = Delivery.create(sauda_id: sauda.id)
 	sauda.sauda_line_items.each_with_index do |sli, index|
@@ -133,6 +133,16 @@ saudas.each do |sauda|
 	sauda.is_delivered = true
 	sauda.save!
 end
+
+saudas = Sauda.all.limit(7)
+saudas.each do |sauda|
+	payment = Payment.new
+	payment.amount = sauda.sauda_line_items.pluck(:rate).sum * sauda.sauda_line_items.pluck(:quantity).sum
+	payment.sauda_id = sauda.id
+	payment.save
+end
+
+
 
 
 

@@ -79,6 +79,6 @@ class SaudasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sauda_params
-      params.require(:sauda).permit(:number, :date, :customer_id, :is_order_taken, :is_delivered, sauda_line_items_attributes: [:id, :category_id, :rate, :quantity, :_destroy])
+      params.require(:sauda).permit(:number, :date, :customer_id, :is_order_taken, :is_delivered, :is_payment_done, sauda_line_items_attributes: [:id, :category_id, :rate, :quantity, :_destroy])
     end
 end

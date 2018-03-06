@@ -23,6 +23,7 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/1/edit
   def edit
+    @sauda = Sauda.find(params[:sauda_id])
   end
 
   # POST /deliveries

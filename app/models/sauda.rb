@@ -8,6 +8,8 @@ class Sauda < ActiveRecord::Base
 	has_one :order
 	has_one :delivery
 
+	has_many :payments
+	
 	has_many :sauda_line_items
 	accepts_nested_attributes_for :sauda_line_items, allow_destroy: true
 
